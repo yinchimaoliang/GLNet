@@ -1,9 +1,9 @@
 export CUDA_VISIBLE_DEVICES=0
 python train_deep_globe.py \
---n_class 7 \
---data_path "/ssd1/chenwy/deep_globe/data/" \
---model_path "/home/chenwy/deep_globe/saved_models/" \
---log_path "/home/chenwy/deep_globe/runs/" \
+--n_class 5 \
+--data_path "/home1/xilu/projects/data_1_4/" \
+--model_path "/home1/xilu/projects/savedmodels/" \
+--log_path "/home1/xilu/projects/logs/" \
 --task_name "fpn_deepglobe_global" \
 --mode 1 \
 --batch_size 6 \

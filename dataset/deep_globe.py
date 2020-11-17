@@ -13,11 +13,11 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 def is_image_file(filename):
     return any(filename.endswith(extension) for extension in [".png", ".jpg", ".jpeg"])
 
-
+'''
 def find_label_map_name(img_filenames, labelExtension=".png"):
     img_filenames = img_filenames.replace('_sat.jpg', '_mask')
     return img_filenames + labelExtension
-
+'''
 
 def RGB_mapping_to_class(label):
     l, w = label.shape[0], label.shape[1]
@@ -107,13 +107,13 @@ class DeepGlobe(data.Dataset):
     def __getitem__(self, index):
         sample = {}
         sample['id'] = self.ids[index][:-8]
-        image = Image.open(os.path.join(self.root, "Sat/" + self.ids[index])) # w, h
+        image = Image.open(os.path.join(self.root, "images/" + self.ids[index])) # w, h
         sample['image'] = image
         # sample['image'] = transforms.functional.adjust_contrast(image, 1.4)
         if self.label:
-            # label = scipy.io.loadmat(join(self.root, 'Notification/' + self.ids[index].replace('_sat.jpg', '_mask.mat')))["label"]
+            # label = scipy.io.loadmat(join(self.root, 'Notification/' + self.ids[index])
             # label = Image.fromarray(label)
-            label = Image.open(os.path.join(self.root, 'Label/' + self.ids[index].replace('_sat.jpg', '_mask.png')))
+            label = Image.open(os.path.join(self.root, 'annotations/' + self.ids[index]))
             sample['label'] = label
         if self.transform and self.label:
             image, label = self._transform(image, label)
